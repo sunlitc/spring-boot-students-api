@@ -24,4 +24,8 @@ public class StudentService {
     public void deleteStudentById(int id) {
         this.studentDao.deleteStudentById(id);
     }
+
+    public void updateStudent(Student student) {
+        this.studentDao.updateStudent(student);
+    }
 }
