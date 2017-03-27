@@ -35,9 +35,13 @@ public class StudentDao {
     }
 
     public void updateStudent(Student student) {
-        Student s = students.get(student.getId());
+        Student s = this.students.get(student.getId());
         s.setName(student.getName());
         s.setCourse(student.getCourse());
-        students.put(student.getId(), student);
+        this.students.put(student.getId(), student);
+    }
+
+    public void addStudent(Student student) {
+        this.students.put(student.getId(), student);
     }
 }
