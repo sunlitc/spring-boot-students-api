@@ -2,7 +2,7 @@ FROM frolvlad/alpine-oraclejdk8:slim
 
 VOLUME /tmp
 
-ADD students-1.0-SANPSHOT.jar app.jar
+ADD target/students-1.0-SNAPSHOT.jar app.jar
 
 RUN sh -c 'touch /app.jar'
 
