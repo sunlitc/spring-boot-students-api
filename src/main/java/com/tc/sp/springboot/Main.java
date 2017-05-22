@@ -1,6 +1,6 @@
 package com.tc.sp.springboot;
 
-import com.tc.sp.springboot.config.ServerProperties;
+import com.tc.sp.springboot.Config.ServerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
