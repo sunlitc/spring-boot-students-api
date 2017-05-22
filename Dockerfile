@@ -1,11 +1,19 @@
-FROM openjdk:alpine
+FROM java:8
 
-VOLUME /tmp
+# Install maven
+RUN apt-get update
+RUN apt-get install -y maven
 
-ADD target/students-1.0-SNAPSHOT.jar app.jar
+WORKDIR /code
 
-RUN sh -c 'touch /app.jar'
+# Prepare by downloading dependencies
+ADD pom.xml /code/pom.xml
+RUN ["mvn", "dependency:resolve"]
+RUN ["mvn", "verify"]
 
-ENV JAVA_OPTS=""
+# Adding source, compile and package into a fat jar
+ADD src /code/src
+RUN ["mvn", "package"]
 
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
+EXPOSE 4567
+CMD ["/usr/lib/jvm/java-8-openjdk-amd64/bin/java", "-jar", "target/sparkexample-jar-with-dependencies.jar"]
