@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 docker rmi students:dev
 
 docker build -t eastacr.azurecr.io/students:dev .
