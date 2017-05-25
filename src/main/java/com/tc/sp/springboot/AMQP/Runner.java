@@ -1,4 +1,4 @@
-package com.tc.sp.springboot.amqp;
+package com.tc.sp.springboot.AMQP;
 
 import com.tc.sp.springboot.Main;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

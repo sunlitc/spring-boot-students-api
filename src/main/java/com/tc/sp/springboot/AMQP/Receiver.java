@@ -1,4 +1,4 @@
-package com.tc.sp.springboot.amqp;
+package com.tc.sp.springboot.AMQP;
 
 import org.springframework.stereotype.Component;
 

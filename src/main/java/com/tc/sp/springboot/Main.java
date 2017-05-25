@@ -1,6 +1,6 @@
 package com.tc.sp.springboot;
 
-import com.tc.sp.springboot.amqp.Receiver;
+import com.tc.sp.springboot.AMQP.Receiver;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
