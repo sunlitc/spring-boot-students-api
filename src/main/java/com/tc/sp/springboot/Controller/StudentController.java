@@ -15,27 +15,37 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping(value = "/")
     public Collection<Student> getAllStudents() {
         return this.studentService.getAllStudents();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public Student getStudentById(@PathVariable("id") int id) {
         return this.studentService.getStudentById(id);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @GetMapping(value = "/private")
+    public String privateData() {
+        return "This is a secured data returned from a secured end point. It can be read only by system admins.";
+    }
+
+    @GetMapping(value = "/protected")
+    public String protectedData() {
+        return "This is a secured data returned from a secured end point. But it can read by all the authenticated users.";
+    }
+
+    @DeleteMapping(value = "/{id}")
     public void deleteStudentById(@PathVariable("id") int id) {
         this.studentService.deleteStudentById(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateStudent(@RequestBody Student student) {
         this.studentService.updateStudent(student);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addStudent(@RequestBody Student student) {
         this.studentService.addStudent(student);
     }
