@@ -12,8 +12,12 @@ import java.util.Collection;
 @RequestMapping("/students")
 public class StudentController {
 
-    @Autowired
     private StudentService studentService;
+
+    @Autowired
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @GetMapping(value = "/")
     public Collection<Student> getAllStudents() {
