@@ -1,4 +1,4 @@
-package com.tc.sp.springboot.config;
+package com.tc.sp.springboot.Config;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
