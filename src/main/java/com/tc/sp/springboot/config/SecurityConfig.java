@@ -8,8 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    public static final String ADMIN = "ADMIN";
-    public static final String USER = "USER";
+    private static final String ADMIN = "ADMIN";
+    private static final String USER = "USER";
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
