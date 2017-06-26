@@ -29,12 +29,12 @@ public class StudentController {
         return this.studentService.getStudentById(id);
     }
 
-    @GetMapping(value = "/private")
+    @GetMapping(value = "/private/")
     public String privateData() {
         return "This is a secured data returned from a secured end point. It can be read only by system admins.";
     }
 
-    @GetMapping(value = "/protected")
+    @GetMapping(value = "/protected/")
     public String protectedData() {
         return "This is a secured data returned from a secured end point. But it can read by all the authenticated users.";
     }
