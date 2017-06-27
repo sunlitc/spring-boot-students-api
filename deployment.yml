@@ -31,7 +31,7 @@ spec:
         - env:
             - name: GET_HOSTS_FROM
               value: dns
-          image: eastacr.azurecr.io/student:dev
+          image: <registry-name>/student:dev
           name: student
           ports:
             - containerPort: 8080

@@ -1,10 +1,10 @@
 docker rmi students:dev
 
-docker build -t eastacr.azurecr.io/students:dev .
+docker build -t <registry_name> .
 
-docker login -u eastacr -p XS/Xr98wH=7=O+/j1w/=7iw2yWxdeRTI eastacr.azurecr.io
+docker login -u <registry-username> -p <registry-password> <>
 
-docker push eastacr.azurecr.io/students:dev
+docker push <registry-image>
 
 kubectl delete -f deployment.yml
 
