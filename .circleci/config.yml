@@ -27,9 +27,8 @@ jobs:
       #  - run: mvn sonar:sonar
        - run: mvn validate
        - run: mvn clean package
-       - run: mvn deploy
 
        - store_artifacts:
-          path: ~/sunil-circleci/spring-boot-students-api/
+          path: ~/sunil-circleci/spring-boot-students-api/app.jar
 
       #  - run: curl -uadmin:admin -T "~/sunil-circleci/vehiclemanagerms/.jar" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp/dcm-management/1.0.0-SNAPSHOT.jar"
