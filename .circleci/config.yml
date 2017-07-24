@@ -32,8 +32,9 @@ jobs:
        - run: mvn sonar:sonar -s /home/circleci/project/settings.xml
        - run: mvn validate
        - run: mvn clean package
+       - run: mvn build
 
        - store_artifacts:
-          path: /home/circleci/project/ && ls -alrt
+          path: /home/circleci/project/ 
 
       #  - run: curl -uadmin:admin -T "~/sunil-circleci/vehiclemanagerms/.jar" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp/dcm-management/1.0.0-SNAPSHOT.jar"
