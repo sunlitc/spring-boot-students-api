@@ -25,6 +25,7 @@ jobs:
        - checkout
        - run: cd /opt/apache-maven-3.5.0/conf && ls -alrt
        - run: mv settings.xml . /opt/apache-maven-3.5.0/conf/
+       - run: cat /opt/apache-maven-3.5.0/conf/settings.xml
        - run: mvn integration-test
        - run: mvn sonar:sonar
        - run: mvn validate
