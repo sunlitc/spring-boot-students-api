@@ -23,10 +23,11 @@ jobs:
     
     steps:
        - checkout
-       - run: mvn test
+       - run: mvn integration-test
       #  - run: mvn sonar:sonar
+       - run: mvn validate
        - run: mvn clean package
-       - run: mvn build
+       - run: mvn deploy
 
        - store_artifacts:
           path: ~/sunil-circleci/spring-boot-students-api/
