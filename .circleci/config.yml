@@ -32,7 +32,7 @@ jobs:
        - run: mvn sonar:sonar -s /home/circleci/project/settings.xml
        - run: mvn validate
        - run: mvn clean package
-       - run: mvn build
+       - run: mvn deploy
 
        - store_artifacts:
           path: /home/circleci/project/ 
