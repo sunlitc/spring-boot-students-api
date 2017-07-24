@@ -26,6 +26,7 @@ jobs:
        - run: mvn test
       #  - run: mvn sonar:sonar
        - run: mvn clean package
+       - run: mvn build
 
        - store_artifacts:
           path: ~/sunil-circleci/spring-boot-students-api/
