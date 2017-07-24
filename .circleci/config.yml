@@ -16,8 +16,8 @@ jobs:
 
     working_directory: /opt/apache-maven-3.5.0/conf/
     steps:
-      - run: cd /opt/opt/apache-maven-3.5.0/conf/
-      - run: touch set.xml
+       - run: cd /opt/opt/apache-maven-3.5.0/conf/
+       - run: touch set.xml
 
     # environment:
     #   # Customize the JVM maximum heap limit
