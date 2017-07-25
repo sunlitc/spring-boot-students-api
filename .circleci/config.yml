@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # Custom Docker Image. Primary container image where all the steps run.
-      - image: maven:alpine
+      - image: maven:3
 
 # Specify service dependencies here if necessary
 # CircleCI maintains a library of pre-built images
@@ -16,19 +16,16 @@ jobs:
     # working_directory:
       
 # These steps go into the primary image
-
     steps:
        - checkout
-       
+       - setup_remote_docker
        - run:
           name: Install Docker Compose
           command: |
             set -x
             curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-            chmod +x /usr/local/bin/docker-compose && ls -alrt /usr/local/bin 
+            chmod +x /usr/local/bin/docker-compose && cd /usr/local/bin && ls -alrt && docker-compose version
 
-       - setup_remote_docker
-       
        - run:
           name: Run Docker compose
           command: |
