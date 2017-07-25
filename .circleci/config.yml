@@ -50,6 +50,8 @@ jobs:
       #       - docker push $REGISTRY_HOST/circleci
 
        - store_artifacts:
-          path: /home/circleci/project/ 
+          path: /tmp
+# Uploading to Artifactory
+       - 
 
       
