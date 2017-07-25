@@ -6,15 +6,9 @@ version: 2
 jobs:
   build:
     docker:
-      # Custom Docker Image
+      # Custom Docker Image. Primary container image where all the steps run.
       - image: circleci/openjdk:8-jdk
-      - run:
-          name: Install Docker Compose
-          command: |
-            set -x
-            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-            chmod +x /usr/local/bin/docker-compose
-      
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -26,9 +20,20 @@ jobs:
     #   Customize the JVM maximum heap limit
     #   JVM_OPTS: -Xmx3200m
     #   TERM: dumb
-    
+      
     steps:
        - checkout
+       - setup_remote_docker
+
+    # This steps go into the primary image
+       - run:
+          name: Install Docker Compose
+          command: |
+            set -x
+            sudo curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose 
+            sudo docker-compose build
+    
        - run: 
           name: Change directory and list all the files
           command: cd /opt/apache-maven-3.5.0/conf && ls -alrt
@@ -49,7 +54,13 @@ jobs:
           name: Maven packaging
           command: mvn clean package
 
+       - deploy:
+          name: Build and push Docker image
+          command: |
+            - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
+            - docker push $REGISTRY_HOST/circleci
+
        - store_artifacts:
           path: /home/circleci/project/ 
 
-      #  - run: curl -uadmin:admin -T "~/sunil-circleci/vehiclemanagerms/.jar" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp/dcm-management/1.0.0-SNAPSHOT.jar"
+      
