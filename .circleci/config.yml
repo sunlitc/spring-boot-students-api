@@ -7,58 +7,48 @@ jobs:
   build:
     docker:
       # Custom Docker Image. Primary container image where all the steps run.
-      - image: circleci/openjdk:8-jdk
+      - image: maven:alpine
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
+# Specify service dependencies here if necessary
+# CircleCI maintains a library of pre-built images
+# documented at https://circleci.com/docs/2.0/circleci-images/
 
     # working_directory:
-
-    # environment:
-    #   Customize the JVM maximum heap limit
-    #   JVM_OPTS: -Xmx3200m
-    #   TERM: dumb
       
+# These steps go into the primary image
+
     steps:
        - checkout
        - setup_remote_docker
-
-    # This steps go into the primary image
        - run:
           name: Install Docker Compose
           command: |
             set -x
-            sudo curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-            sudo chmod +x /usr/local/bin/docker-compose 
-            sudo docker-compose build
-    
-       - run: 
-          name: Change directory and list all the files
-          command: cd /opt/apache-maven-3.5.0/conf && ls -alrt
-      
+            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose && ls -alrt /usr/local/bin 
+
        - run:
-          name: Integration Testing
-          command: mvn integration-test -s /home/circleci/project/settings.xml
+          name: Run Docker compose
+          command: |
+            docker-compose up -d 
+    
+       - run:
+          name: Run test
+          command: mvn test
        
       #  - run:
       #     name: Sonar Check
       #     command: mvn sonar:sonar -s /home/circleci/project/settings.xml
        
-       - run: 
-          name: Maven Validation
-          command: mvn validate
-
        - run:
           name: Maven packaging
           command: mvn clean package
 
-       - deploy:
-          name: Build and push Docker image
-          command: |
-            - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
-            - docker push $REGISTRY_HOST/circleci
+      #  - deploy:
+      #     name: Build and push Docker image
+      #     command: |
+      #       - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
+      #       - docker push $REGISTRY_HOST/circleci
 
        - store_artifacts:
           path: /home/circleci/project/ 
