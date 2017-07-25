@@ -52,6 +52,6 @@ jobs:
        - store_artifacts:
           path: /tmp
 # Uploading to Artifactory
-       - 
+
 
       
