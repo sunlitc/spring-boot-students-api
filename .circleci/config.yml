@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
+      # Docker custom image, see .circleci/images/primary/Dockerfile
       - image: circleci/openjdk:8-jdk
       
       # Specify service dependencies here if necessary
@@ -14,7 +14,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    # working_directory: /opt/apache-maven-3.5.0/conf/
+    # working_directory:
 
     # environment:
     #   # Customize the JVM maximum heap limit
@@ -23,15 +23,25 @@ jobs:
     
     steps:
        - checkout
-       - run: ls -alrt && cd /opt/apache-maven-3.5.0/conf && ls -alrt
-      #  - run: sudo cat settings.xml . > /opt/apache-maven-3.5.0/conf/settings.xml
-      #  - run: sudo mv setting.xml >> /opt/apache-maven-3.5.0/conf/settings.xml
-      #  - run: cat /opt/apache-maven-3.5.0/conf/settings.xml
-      #  - run: cat /opt/apache-maven-3.5.0/conf/settings.xml
-       - run: mvn integration-test -s /home/circleci/project/settings.xml
-       - run: mvn sonar:sonar -s /home/circleci/project/settings.xml
-       - run: mvn validate
-       - run: mvn clean package
+       - run: 
+          name: Change directory and list all the files
+          command: cd /opt/apache-maven-3.5.0/conf && ls -alrt
+      
+       - run:
+          name: Integration Testing
+          command: mvn integration-test -s /home/circleci/project/settings.xml
+       
+       - run:
+          name: Sonar Check
+          command: mvn sonar:sonar -s /home/circleci/project/settings.xml
+       
+       - run: 
+          name: Maven Validation
+          command: mvn validate
+
+       - run:
+          name: Maven packaging
+          command: mvn clean package
 
        - store_artifacts:
           path: /home/circleci/project/ 
