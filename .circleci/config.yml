@@ -6,8 +6,14 @@ version: 2
 jobs:
   build:
     docker:
-      # Docker custom image, see .circleci/images/primary/Dockerfile
+      # Custom Docker Image
       - image: circleci/openjdk:8-jdk
+      - run:
+          name: Install Docker Compose
+          command: |
+            set -x
+            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -17,7 +23,7 @@ jobs:
     # working_directory:
 
     # environment:
-    #   # Customize the JVM maximum heap limit
+    #   Customize the JVM maximum heap limit
     #   JVM_OPTS: -Xmx3200m
     #   TERM: dumb
     
@@ -31,9 +37,9 @@ jobs:
           name: Integration Testing
           command: mvn integration-test -s /home/circleci/project/settings.xml
        
-       - run:
-          name: Sonar Check
-          command: mvn sonar:sonar -s /home/circleci/project/settings.xml
+      #  - run:
+      #     name: Sonar Check
+      #     command: mvn sonar:sonar -s /home/circleci/project/settings.xml
        
        - run: 
           name: Maven Validation
