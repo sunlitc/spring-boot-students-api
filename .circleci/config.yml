@@ -55,7 +55,7 @@ jobs:
           name: Artifacts Upload
           command: curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD $ARTIFACTORY_PATH/$STAGING_FOLDER/$GROUPID/$ARTIFACTID/$VERSION/$ARTIFACTID.jar -T /tmp/CircleCI/target/students-1.0.0-SNAPSHOT.jar
 
-       - deployment:
+       - deploy:
       #     name: Build and push Docker image
       #     command: |
       #       - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
