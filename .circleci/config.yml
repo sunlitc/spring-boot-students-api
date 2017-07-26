@@ -43,22 +43,21 @@ jobs:
           name: Maven packaging
           command: mvn clean package
 
-      #  - deploy:
-      #     name: Build and push Docker image
-      #     command: |
-      #       - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
-      #       - docker push $REGISTRY_HOST/circleci
-
        - store_artifacts:
           path: /tmp/artifacts/
 
        - run:
           name: list the dire
-          command: cd /tmp/artifacts/ && ls -alrt && cd /target/ && ls -alrt
+          command: cd /tmp/artifacts/ && ls -alrt && cd //tmp/artifacts/target/ && ls -alrt
 
 #Uploading artifacts to Artifactory
        - run:
           name: Artifacts Upload
           command: curl -u admin:0BE67Uv8sl https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp.jar -T /tmp/artifacts/target.jar
           # curl -uadmin:0BE67Uv8sl -T "/tmp/artifacts/target/*.jar" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp"
-       
+
+#  - deploy:
+      #     name: Build and push Docker image
+      #     command: |
+      #       - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
+      #       - docker push $REGISTRY_HOST/circleci
