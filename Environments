@@ -1,0 +1,3 @@
+X_ARTIFACTORY_USER=admin
+X_ARTIFACTORY_PASSWORD=0BE67Uv8sl
+X_ARTIFACTORY_URL=https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp

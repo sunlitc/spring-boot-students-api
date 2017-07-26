@@ -41,7 +41,7 @@ jobs:
        
        - run:
           name: Maven packaging
-          command: mvn clean package
+          command: mvn clean package 
 
       #  - deploy:
       #     name: Build and push Docker image
@@ -51,7 +51,15 @@ jobs:
 
        - store_artifacts:
           path: /tmp
-# Uploading to Artifactory
 
-
-      
+# Uploading artifacts to Artifactory
+       - run:
+          name: Artifacts Upload
+          command: |
+            # wget https://dl.bintray.com/jfrog/jfrog-cli-go/1.7.1/jfrog-cli-linux-amd64/jfrog
+            # chmod +x jfrog
+            # # Configure Artifactory instance with JFrog CLI
+            # ./jfrog rt config --url https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp --user admin --apikey 0BE67Uv8sl
+            # # Upload Artifacts to artifactory
+            # ./jfrog rt u "multi*/*.jar" circleci-generic-local --build-number=$CIRCLE_BUILD_NUM --flat=false
+       - run: curl -uadmin:0BE67Uv8sl -T "./Test/HelloWorldApp.class" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp"
