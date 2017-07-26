@@ -13,7 +13,7 @@ jobs:
 # CircleCI maintains a library of pre-built images
 # documented at https://circleci.com/docs/2.0/circleci-images/
 
-    working_directory: /tmp/artifacts/
+    working_directory: /tmp/CircleCI/
       
 # These steps go into the primary image
     steps:
@@ -48,12 +48,12 @@ jobs:
 
        - run:
           name: list the dire
-          command: cd /tmp/artifacts/ && ls -alrt && cd //tmp/artifacts/target/ && ls -alrt
+          command: cd /tmp/CircleCI/ && ls -alrt && cd /tmp/CircleCI/target/ && ls -alrt
 
 #Uploading artifacts to Artifactory
        - run:
           name: Artifacts Upload
-          command: curl -u admin:0BE67Uv8sl https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp/students.jar -T /tmp/artifacts/target/students-1.0.0-SNAPSHOT.jar
+          command: curl -u admin:0BE67Uv8sl https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp/students-1.0.0-SNAPSHOT.jar -T /tmp/CircleCI/target/students-1.0.0-SNAPSHOT.jar
           # curl -uadmin:0BE67Uv8sl -T "/tmp/artifacts/target/*.jar" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp"
 
 #  - deploy:
