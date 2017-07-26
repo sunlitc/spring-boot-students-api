@@ -53,7 +53,8 @@ jobs:
 #Uploading artifacts to Artifactory
        - run:
           name: Artifacts Upload
-          command: curl -u admin:0BE67Uv8sl https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp/students-1.0.0-SNAPSHOT.jar -T /tmp/CircleCI/target/students-1.0.0-SNAPSHOT.jar
+          command: curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD $ARTIFACTORY_PATH/$STAGING_FOLDER/$GROUPID/$ARTIFACTID/$VERSION/$ARTIFACTID.jar -T /tmp/CircleCI/target/students-1.0.0-SNAPSHOT.jar
+          # curl -u admin:0BE67Uv8sl https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp/students-1.0.0-SNAPSHOT.jar -T /tmp/CircleCI/target/students-1.0.0-SNAPSHOT.jar
           # curl -uadmin:0BE67Uv8sl -T "/tmp/artifacts/target/*.jar" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp"
 
 #  - deploy:
