@@ -13,7 +13,7 @@ jobs:
 # CircleCI maintains a library of pre-built images
 # documented at https://circleci.com/docs/2.0/circleci-images/
 
-    working_directory: /tmp
+    working_directory: /tmp/artifacts/
       
 # These steps go into the primary image
     steps:
@@ -50,16 +50,16 @@ jobs:
       #       - docker push $REGISTRY_HOST/circleci
 
        - store_artifacts:
-          path: /tmp/
+          path: /tmp/artifacts/
 
        - run:
           name: list the dire
-          command: cd /tmp && ls -alrt
+          command: cd /tmp/artifacts/ && ls -alrt
 
 #Uploading artifacts to Artifactory
        - run:
           name: Artifacts Upload
-          command: curl -uadmin:0BE67Uv8sl -T "/tmp/*" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp"
+          command: curl -uadmin:0BE67Uv8sl -T "/tmp/artifacts/*" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp"
             
 
        
