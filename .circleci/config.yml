@@ -59,7 +59,7 @@ jobs:
 #Uploading artifacts to Artifactory
        - run:
           name: Artifacts Upload
-          command: curl -uadmin:0BE67Uv8sl -T "/tmp/artifacts/*" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp"
+          command: curl -uadmin:0BE67Uv8sl -T "/tmp/artifacts/target/*.jar" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp"
             
 
        
