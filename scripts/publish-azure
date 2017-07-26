@@ -5,7 +5,7 @@
 # exit on sub-module failure
 set -e
 
-sudo cd /tmp/CircleCI/target/
+cd /tmp/CircleCI/target/
 
 # ------
 
