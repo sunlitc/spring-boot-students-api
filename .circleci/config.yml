@@ -51,7 +51,7 @@ jobs:
           command: cd /tmp/CircleCI/ && ls -alrt && cd /tmp/CircleCI/target/ && ls -alrt
 
 #Uploading artifacts to Artifactory
-        - run:
+       - run:
           name: Artifacts Upload
           command: curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD $ARTIFACTORY_PATH/$STAGING_FOLDER/$GROUPID/$ARTIFACTID/$VERSION/$ARTIFACTID.jar -T /tmp/CircleCI/target/students-1.0.0-SNAPSHOT.jar
 #  - deploy:
