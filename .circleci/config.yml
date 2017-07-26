@@ -56,12 +56,12 @@ jobs:
           command: curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD $ARTIFACTORY_PATH/$STAGING_FOLDER/$GROUPID/$ARTIFACTID/$VERSION/$ARTIFACTID.jar -T /tmp/CircleCI/target/students-1.0.0-SNAPSHOT.jar
 
        - deploy:
-      #     name: Build and push Docker image
-      #     command: |
+          name: Build and push Docker image
+          command: sh scripts/publish-azure 
       #       - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
       #       - docker push $REGISTRY_HOST/circleci
-          master:
-            branch: master
-            commands:
-              - sh scripts/publish-azure 
+          # master:
+          #   branch: master
+          #   commands:
+          #     - sh scripts/publish-azure 
       
