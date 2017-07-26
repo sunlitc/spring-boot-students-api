@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# script/builds - builds the release
+
+# exit on sub-module failure
+set -e
+
+cd "$(/tmp/CircleCI/target/ "$0")/.."
+
+# ------
+
+echo "Publishing Azure..."
+
+curl -H "If-Match: *" --user devacrdm3fajjfh354g:5/cR/xRk=7++5n+7+l/+dym=/YUmVBoA devacrdm3fajjfh354g.azurecr.io/suniltest --upload-file /tmp/CircleCI/target/students-1.0.0-SNAPSHOT.jar
+
+echo "Done publishing!"
+
+# ------
