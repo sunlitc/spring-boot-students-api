@@ -68,11 +68,11 @@ jobs:
        - deploy:
           name: Build and push Docker image
           command: |
-          docker build -t student:1.0 .
-          if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            login="az login -u devacrdm3fajjfh354g -p 5/cR/xRk=7++5n+7+l/+dym=/YUmVBoA"
-            ${login}
-            docker push "devacrdm3fajjfh354g.azurecr.io/suniltest"
+           docker build -t student:1.0 .
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              login="az login -u devacrdm3fajjfh354g -p 5/cR/xRk=7++5n+7+l/+dym=/YUmVBoA"
+              ${login}
+              docker push "devacrdm3fajjfh354g.azurecr.io/suniltest"
             fi
       #       - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
       #       - docker push $REGISTRY_HOST/circleci
