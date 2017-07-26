@@ -76,7 +76,7 @@ jobs:
        - deploy:
           name: Build and push Docker image
           command: |
-           docker build -t student:1.0 /tmp/CircleCI/.circleci/images/Dockerfile
+           docker build -t student:1.0 /tmp/CircleCI/.circleci/images/
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               login="az login -u devacrdm3fajjfh354g -p 5/cR/xRk=7++5n+7+l/+dym=/YUmVBoA"
               ${login}
