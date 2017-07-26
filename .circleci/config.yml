@@ -54,12 +54,12 @@ jobs:
 
        - run:
           name: list the dire
-          command: cd /tmp/artifacts/ && ls -alrt
+          command: cd /tmp/artifacts/ && ls -alrt && cd /target/ && ls -alrt
 
 #Uploading artifacts to Artifactory
        - run:
           name: Artifacts Upload
           command: curl -uadmin:0BE67Uv8sl -T "/tmp/artifacts/target/*.jar" "https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp"
-            
+          curl -u admin:0BE67Uv8sl https://tcartifactory.jfrog.io/tcartifactory/libs-snapshot-local/com/tc/tsp.jar -T /tmp/artifacts/target.jar
 
        
