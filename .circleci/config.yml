@@ -66,21 +66,21 @@ jobs:
           name: Artifacts Upload
           command: curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD $ARTIFACTORY_PATH/$STAGING_FOLDER/$GROUPID/$ARTIFACTID/$VERSION/$ARTIFACTID.jar -T /tmp/CircleCI/target/students-1.0.0-SNAPSHOT.jar
 
-# Build and Push Image      
-       - run: docker build -t students:0.0.1 /tmp/CircleCI/
+# Build and Push     
+      #  - run: docker build -t students:0.0.1 /tmp/CircleCI/
 
-       - run: docker tag students:0.0.1 devacrdm3fajjfh354g.azurecr.io/students
+      #  - run: docker tag students:0.0.1 devacrdm3fajjfh354g.azurecr.io/students
 
-       - run: docker login devacrdm3fajjfh354g.azurecr.io -u devacrdm3fajjfh354g -p '5/cR/xRk=7++5n+7+l/+dym=/YUmVBoA'
+      #  - run: docker login devacrdm3fajjfh354g.azurecr.io -u devacrdm3fajjfh354g -p '5/cR/xRk=7++5n+7+l/+dym=/YUmVBoA'
 
-       - run: docker push devacrdm3fajjfh354g.azurecr.io/students
+      #  - run: docker push devacrdm3fajjfh354g.azurecr.io/students
            
-            #  docker build -t student:1.0 /tmp/CircleCI/
-            # if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            #   login="az login -u devacrdm3fajjfh354g -p 5/cR/xRk=7++5n+7+l/+dym=/YUmVBoA"
-            #   ${login}
-            #   docker push "devacrdm3fajjfh354g.azurecr.io/suniltest"
-            # fi
-      #       - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
-      #       - docker push $REGISTRY_HOST/circleci
+      #       #  docker build -t student:1.0 /tmp/CircleCI/
+      #       # if [ "${CIRCLE_BRANCH}" == "master" ]; then
+      #       #   login="az login -u devacrdm3fajjfh354g -p 5/cR/xRk=7++5n+7+l/+dym=/YUmVBoA"
+      #       #   ${login}
+      #       #   docker push "devacrdm3fajjfh354g.azurecr.io/suniltest"
+      #       # fi
+      # #       - docker login -e $DOCKER_USER -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_HOST
+      # #       - docker push $REGISTRY_HOST/circleci
       
