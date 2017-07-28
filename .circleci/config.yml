@@ -67,11 +67,11 @@ jobs:
           command: curl -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD $ARTIFACTORY_PATH/$STAGING_FOLDER/$GROUPID/$ARTIFACTID/$VERSION/$ARTIFACTID.jar -T /tmp/CircleCI/target/students-1.0.0-SNAPSHOT.jar
 
 # Build and Push Image      
-       - run: docker login devacrdm3fajjfh354g.azurecr.io -u devacrdm3fajjfh354g -p '5/cR/xRk=7++5n+7+l/+dym=/YUmVBoA'
-
        - run: docker build -t students:0.0.1 /tmp/CircleCI/
 
        - run: docker tag students:0.0.1 devacrdm3fajjfh354g.azurecr.io/students
+
+       - run: docker login devacrdm3fajjfh354g.azurecr.io -u devacrdm3fajjfh354g -p '5/cR/xRk=7++5n+7+l/+dym=/YUmVBoA'
 
        - run: docker push devacrdm3fajjfh354g.azurecr.io/students
            
